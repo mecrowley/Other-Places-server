@@ -1,0 +1,10 @@
+[
+    {
+    "model": "otherplacesapi.otherplacesuser",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "bio": "I created Other Places"
+        }
+    }
+]

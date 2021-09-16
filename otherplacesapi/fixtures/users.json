@@ -1,0 +1,20 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$SfnXca6xdl4hzjuUGsVc4e$BibNIej3xgKsUkHzX4THkdj6uahiMMklAsvcWQgTAe0=",
+            "last_login": null,
+            "is_superuser": true,
+            "username": "madeline",
+            "first_name": "Madeline",
+            "last_name": "Crowley",
+            "email": "madeline@crowley.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2021-09-16 15:34:38.116761",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
