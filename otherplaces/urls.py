@@ -18,9 +18,11 @@ from django.urls import path
 from django.conf.urls import include
 from rest_framework import routers
 from otherplacesapi.views import register_user, login_user
+from otherplacesapi.views import OtherPlacesProfileView
 
 
 router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'userprofiles', OtherPlacesProfileView, 'otherplacesuser')
 
 urlpatterns = [
     path('login', login_user),
