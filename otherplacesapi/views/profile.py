@@ -1,10 +1,13 @@
 """View module for handling requests about park areas"""
-from django.contrib.auth.models import User
+import uuid
+import base64
+from django.core.files.base import ContentFile
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.http import HttpResponseServerError
 from rest_framework import status, serializers
+from django.contrib.auth.models import User
 from otherplacesapi.models import OtherPlacesUser
 
 
@@ -26,14 +29,17 @@ class OtherPlacesProfileView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
-    def update(self, request):
+    def update(self, request, pk=None):
         """Handle PUT requests for a user
 
         Returns:
             Response -- Empty body with 204 status code
         """
         opuser = OtherPlacesUser.objects.get(user=request.auth.user)
-        opuser.bio = request.data["bio"]
+        format, imgstr = request.data["profile_pic"].split(';base64,')
+        ext = format.split('/')[-1]
+        data = ContentFile(base64.b64decode(imgstr), name=f'{opuser.id}-{uuid.uuid4()}.{ext}')
+        opuser.profile_pic = data
         opuser.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
@@ -73,4 +79,4 @@ class OtherPlacesUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OtherPlacesUser
-        fields = ('id', 'user', 'bio')
+        fields = ('id', 'user', 'bio', 'profile_pic')

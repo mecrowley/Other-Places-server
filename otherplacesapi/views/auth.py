@@ -1,3 +1,6 @@
+import uuid
+import base64
+from django.core.files.base import ContentFile
 from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework.authtoken.models import Token
@@ -27,8 +30,6 @@ def login_user(request):
         data = {'valid': False}
         return Response(data)
 
-default_bio = ""
-
 @api_view(["POST"])
 @permission_classes([AllowAny])
 def register_user(request):
@@ -40,9 +41,17 @@ def register_user(request):
         last_name=request.data['last_name']
     )
 
+    if request.data["profile_pic"] != {}:
+        format, imgstr = request.data["profile_pic"].split(';base64,')
+        ext = format.split('/')[-1]
+        data = ContentFile(base64.b64decode(imgstr), name=f'{uuid.uuid4()}.{ext}')
+    else:
+        data = None
+
     otherplacesuser = OtherPlacesUser.objects.create(
         user=new_user,
-        bio=default_bio
+        bio=request.data['bio'],
+        profile_pic=data
     )
 
     token = Token.objects.create(user=otherplacesuser.user)
