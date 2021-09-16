@@ -20,6 +20,7 @@ def login_user(request):
         data = {
             'valid': True,
             'token': token.key,
+            'isAdmin': authenticated_user.is_staff
         }
         return Response(data)
     else:
