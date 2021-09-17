@@ -36,10 +36,15 @@ class OtherPlacesProfileView(ViewSet):
             Response -- Empty body with 204 status code
         """
         opuser = OtherPlacesUser.objects.get(user=request.auth.user)
-        format, imgstr = request.data["profile_pic"].split(';base64,')
-        ext = format.split('/')[-1]
-        data = ContentFile(base64.b64decode(imgstr), name=f'{opuser.id}-{uuid.uuid4()}.{ext}')
-        opuser.profile_pic = data
+        opuser.bio = request.data["bio"]
+        splitprofilepic = request.data["profile_pic"].split("/")
+        if splitprofilepic[0] == "http:":
+            pass
+        else:
+            format, imgstr = request.data["profile_pic"].split(';base64,')
+            ext = format.split('/')[-1]
+            data = ContentFile(base64.b64decode(imgstr), name=f'{uuid.uuid4()}.{ext}')
+            opuser.profile_pic = data
         opuser.save()
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
