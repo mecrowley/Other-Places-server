@@ -5,5 +5,5 @@
   disable=broad-except
 
 [MASTER]
-  disable=C0114, missing-function-docstring, invalid-name, no-member, missing-class-docstring
+  disable=C0114, missing-function-docstring, invalid-name, no-member, missing-class-docstring, line-too-long
 
