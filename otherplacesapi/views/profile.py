@@ -71,7 +71,7 @@ class OtherPlacesProfileView(ViewSet):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username')
+        fields = ('first_name', 'last_name', 'username', 'date_joined')
 
 
 class OtherPlacesUserSerializer(serializers.ModelSerializer):

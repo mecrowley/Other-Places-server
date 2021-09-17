@@ -5,7 +5,16 @@
     "fields": {
         "user": 1,
         "bio": "I created Other Places",
-        "profile_pic": ""
+        "profile_pic": "profileimages/1-fe85ea6b-131c-4615-806e-b05dfeb7151a.jpeg"
+        }
+    },
+    {
+    "model": "otherplacesapi.otherplacesuser",
+    "pk": 2,
+    "fields": {
+        "user": 2,
+        "bio": "I like exploring",
+        "profile_pic": "profileimages/ac574179-de97-4528-97dc-5fc1a174612b.jpeg"
         }
     }
 ]
