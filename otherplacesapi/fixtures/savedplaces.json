@@ -1,0 +1,34 @@
+[
+    {
+        "model": "otherplacesapi.savedplace",
+        "pk": 1,
+        "fields": {
+            "opuser": 1,
+            "place": 3
+        }
+    },
+    {
+        "model": "otherplacesapi.savedplace",
+        "pk": 2,
+        "fields": {
+            "opuser": 2,
+            "place": 1
+        }
+    },
+    {
+        "model": "otherplacesapi.savedplace",
+        "pk": 3,
+        "fields": {
+            "opuser": 4,
+            "place": 2
+        }
+    },
+    {
+        "model": "otherplacesapi.savedplace",
+        "pk": 4,
+        "fields": {
+            "opuser": 2,
+            "place": 2
+        }
+    }
+]

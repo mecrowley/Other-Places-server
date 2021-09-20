@@ -1,0 +1,35 @@
+[
+    {
+    "model": "otherplacesapi.place",
+    "pk": 1,
+    "fields": {
+        "opuser": 1,
+        "title": "I-65 Underpass",
+        "description": "A mysterious place where many diverse characters are known to gather",
+        "address": "Nashville, Tennessee",
+        "created": "2021-09-17 21:10:16.772405"
+        }
+    },    
+    {
+    "model": "otherplacesapi.place",
+    "pk": 2,
+    "fields": {
+        "opuser": 1,
+        "title": "Demonbreun Cave",
+        "description": "This cave starts out in the woods next to some kind of waste management facility and goes all the way out to a rocky cliff overlooking the Cumberland.  I heard that orignally some old fur trapper named Demonbreun used to live here?  People used to live in some weird places.",
+        "address": "208 River Hills Dr, Nashville, Tennessee 37210",
+        "created": "2021-09-17 21:25:16.772405"
+        }
+    },    
+    {
+    "model": "otherplacesapi.place",
+    "pk": 3,
+    "fields": {
+        "opuser": 2,
+        "title": "Belle Island Zoo",
+        "description": "I was driving around Belle Island in Detroit when I saw a fenced area overgrown with ivy with strange looking structures behind it.  I crawled under the fence to look around and found it was an abandoned zoo.",
+        "address": "Central Ave, Detroit, Michigan 48207",
+        "created": "2021-09-17 21:27:16.772405"
+        }
+    }    
+]

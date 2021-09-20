@@ -9,3 +9,11 @@ class OtherPlacesUser(models.Model):
     profile_pic = models.ImageField(
         upload_to='profileimages', height_field=None,
         width_field=None, max_length=None, null=True)
+
+    @property
+    def isMe(self):
+        return self.__isMe
+
+    @isMe.setter
+    def isMe(self, value):
+        self.__isMe = value

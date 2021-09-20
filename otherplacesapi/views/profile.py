@@ -21,7 +21,12 @@ class OtherPlacesProfileView(ViewSet):
             Response -- JSON serialized other places user instance
         """
         try:
+            authuser = OtherPlacesUser.objects.get(user=request.auth.user)
             opuser = OtherPlacesUser.objects.get(pk=pk)
+            if authuser == opuser:
+                opuser.isMe = True
+            else:
+                opuser.isMe = False
             serializer = OtherPlacesUserSerializer(opuser, context={'request': request})
             return Response(serializer.data)
         except OtherPlacesUser.DoesNotExist as ex:
@@ -56,7 +61,12 @@ class OtherPlacesProfileView(ViewSet):
             Response -- JSON serialized list of Other Places users
         """
         opusers = OtherPlacesUser.objects.all()
-
+        authuser = OtherPlacesUser.objects.get(user=request.auth.user)
+        for opuser in opusers:
+            if opuser == authuser:
+                opuser.isMe = True
+            else:
+                opuser.isMe = False
         serializer = OtherPlacesUserSerializer(
             opusers, many=True, context={'request': request})
         return Response(serializer.data)
@@ -66,6 +76,7 @@ class OtherPlacesProfileView(ViewSet):
         """Retrieve logged in user's profile"""
         try:
             opuser = OtherPlacesUser.objects.get(user=request.auth.user)
+            opuser.isMe = True
             serializer = OtherPlacesUserSerializer(opuser, context={'request': request})
             return Response(serializer.data)
         except OtherPlacesUser.DoesNotExist as ex:
@@ -84,4 +95,4 @@ class OtherPlacesUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OtherPlacesUser
-        fields = ('id', 'user', 'bio', 'profile_pic')
+        fields = ('id', 'user', 'bio', 'profile_pic', 'isMe')

@@ -12,7 +12,7 @@
             "email": "madeline@crowley.com",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2021-09-16 15:34:38.116761",
+            "date_joined": "2021-09-16T15:34:38.116Z",
             "groups": [],
             "user_permissions": []
         }
@@ -30,7 +30,43 @@
             "email": "jane@doe.com",
             "is_staff": true,
             "is_active": true,
-            "date_joined": "2021-09-16 15:39:38.116761",
+            "date_joined": "2021-09-16T15:39:38.116Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$ChVUOso8WITm926XXdkWXU$R4+l0USDKbWxqmZlHbuzoTZBkc9qbJWGG+7l97YK+2g=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "slcozort",
+            "first_name": "Sarah",
+            "last_name": "Cozort",
+            "email": "sarah@cozort.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-09-17 21:25:16.548307",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 4,
+        "fields": {
+            "password": "pbkdf2_sha256$260000$lZxw5j7lrk6Jl6oun3eBwl$TZWHI3D5xzzB/gcIgbDXRdtRmsbaoCnydaY2YS5Huj8=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "frankie",
+            "first_name": "Francine",
+            "last_name": "Diemer",
+            "email": "frankie@diemer.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2021-09-17 21:34:20.799564",
             "groups": [],
             "user_permissions": []
         }

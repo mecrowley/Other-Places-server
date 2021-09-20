@@ -9,3 +9,53 @@ class Place(models.Model):
     description = models.TextField()
     address = models.CharField(max_length=100)
     created = models.DateTimeField()
+    visitors = models.ManyToManyField("OtherPlacesUser", through="VisitedPlace", related_name="visited")
+    savers = models.ManyToManyField("OtherPlacesUser", through="SavedPlace", related_name="saved")
+
+    @property
+    def isMine(self):
+        return self.__isMine
+
+    @isMine.setter
+    def isMine(self, value):
+        self.__isMine = value
+
+    @property
+    def saved(self):
+        return self.__saved
+
+    @saved.setter
+    def saved(self, value):
+        self.__saved = value
+
+    @property
+    def visited(self):
+        return self.__visited
+
+    @visited.setter
+    def visited(self, value):
+        self.__visited = value
+
+    @property
+    def photos(self):
+        return self.__photos
+
+    @photos.setter
+    def photos(self, value):
+        self.__photos = value
+    
+    @property
+    def totalvisitors(self):
+        return self.__totalvisitors
+
+    @totalvisitors.setter
+    def totalvisitors(self, value):
+        self.__totalvisitors = value
+    
+    @property
+    def totalsaved(self):
+        return self.__totalsaved
+
+    @totalsaved.setter
+    def totalsaved(self, value):
+        self.__totalsaved = value

@@ -21,10 +21,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from otherplacesapi.views import register_user, login_user
 from otherplacesapi.views import OtherPlacesProfileView
+from otherplacesapi.views import PlaceView
+from otherplacesapi.views import PlacePhotoView
 
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'userprofiles', OtherPlacesProfileView, 'otherplacesuser')
+router.register(r'places', PlaceView, 'place')
+router.register(r'placephotos', PlacePhotoView, 'placephoto')
 
 urlpatterns = [
     path('login', login_user),

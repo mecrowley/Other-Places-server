@@ -1,0 +1,12 @@
+[
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 1,
+    "fields": {
+        "opuser": 1,
+        "place": 1,
+        "photo": "profileimages/41dbdb9c-8b35-4196-bc3e-482f1ad40736.jpeg",
+        "created": "2021-09-17 21:10:16.772405"
+        }
+    }
+]

@@ -1,0 +1,42 @@
+[
+    {
+        "model": "otherplacesapi.visitedplace",
+        "pk": 1,
+        "fields": {
+            "opuser": 1,
+            "place": 1
+        }
+    },
+    {
+        "model": "otherplacesapi.visitedplace",
+        "pk": 2,
+        "fields": {
+            "opuser": 1,
+            "place": 2
+        }
+    },
+    {
+        "model": "otherplacesapi.visitedplace",
+        "pk": 3,
+        "fields": {
+            "opuser": 3,
+            "place": 1
+        }
+    },
+    {
+        "model": "otherplacesapi.visitedplace",
+        "pk": 4,
+        "fields": {
+            "opuser": 4,
+            "place": 1
+        }
+    },
+    {
+        "model": "otherplacesapi.visitedplace",
+        "pk": 5,
+        "fields": {
+            "opuser": 2,
+            "place": 3
+        }
+    }
+]

@@ -14,7 +14,25 @@
     "fields": {
         "user": 2,
         "bio": "I like exploring",
-        "profile_pic": "profileimages/ac574179-de97-4528-97dc-5fc1a174612b.jpeg"
+        "profile_pic": "profileimages/41ed1c5c-1e1a-410b-9525-5784456aaaf6.jpeg"
+        }
+    },
+    {
+    "model": "otherplacesapi.otherplacesuser",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "bio": "I live in Memphis",
+        "profile_pic": "profileimages/47ed7755-61fc-4d60-b13e-923ca4373abe.jpeg"
+        }
+    },
+    {
+    "model": "otherplacesapi.otherplacesuser",
+    "pk": 4,
+    "fields": {
+        "user": 4,
+        "bio": "Yeehaw",
+        "profile_pic": "profileimages/87380d23-a428-4dd3-925a-6bda3b25c1c8.jpeg"
         }
     }
 ]
