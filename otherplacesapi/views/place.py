@@ -3,11 +3,12 @@ from otherplacesapi.models.visitedplace import VisitedPlace
 from django.core.exceptions import ValidationError
 from rest_framework import status, serializers
 from django.http import HttpResponseServerError
+from django.db.models import Q
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.contrib.auth.models import User
-from otherplacesapi.models import OtherPlacesUser, Place, PlacePhoto, VisitedPlace, SavedPlace
+from otherplacesapi.models import OtherPlacesUser, Place, PlacePhoto, VisitedPlace, SavedPlace, Follow
 import datetime
 
 
@@ -52,6 +53,8 @@ class PlaceView(ViewSet):
             place.photos = photo_list.data
             place.visited = authuser in place.visitors.all()
             place.saved = authuser in place.savers.all()
+            place.totalvisitors = len(VisitedPlace.objects.filter(place=place))
+            place.totalsaved = len(SavedPlace.objects.filter(place=place))
 
             if authuser == place.opuser:
                 place.isMine = True
@@ -125,9 +128,10 @@ class PlaceView(ViewSet):
         for place in places:
             place.totalsaved = len(SavedPlace.objects.filter(place=place))
 
-        opuser = self.request.query_params.get('user', None)
+        opuser = self.request.query_params.get('userauthor', None)
         if opuser is not None:
             places = places.filter(opuser__id=opuser)
+
 
         serializer = PlaceSerializer(
             places, many=True, context={'request': request})
@@ -187,6 +191,28 @@ class PlaceView(ViewSet):
                 return Response(None, status=status.HTTP_204_NO_CONTENT)
             except Exception as ex:
                 return Response({'message': ex.args[0]})
+    
+    
+    @action(methods=['get'], detail=False)
+    def following(self, request, pk=None):
+        """Managing users visiting a place"""
+        opuser = OtherPlacesUser.objects.get(user=request.auth.user)
+        follows = Follow.objects.filter(follower=opuser)
+        opuserposts = Place.objects.filter(opuser=opuser)
+        if len(follows) > 0 and len(opuserposts) > 0:
+            for follow in follows:
+                places = Place.objects.filter(Q(opuser=follow.opuser) | Q(opuser=opuser))
+        elif len(follows) > 0:
+            for follow in follows:
+                places = Place.objects.filter(opuser=follow.opuser)
+        elif len(opuserposts) > 0:
+            places = opuserposts
+        else:
+            places = None
+
+        serializer = PlaceSerializer(
+            places, many=True, context={'request': request})
+        return Response(serializer.data)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

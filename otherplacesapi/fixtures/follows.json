@@ -1,0 +1,18 @@
+[
+    {
+        "model": "otherplacesapi.follow",
+        "pk": 1,
+        "fields": {
+            "follower": 1,
+            "opuser": 2
+        }
+    },
+    {
+        "model": "otherplacesapi.follow",
+        "pk": 2,
+        "fields": {
+            "follower": 4,
+            "opuser": 1
+        }
+    }
+]
