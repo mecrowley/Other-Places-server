@@ -3,9 +3,29 @@
     "model": "otherplacesapi.placephoto",
     "pk": 1,
     "fields": {
-        "opuser": 1,
-        "place": 1,
-        "photo": "profileimages/41dbdb9c-8b35-4196-bc3e-482f1ad40736.jpeg",
+        "opuser": 2,
+        "place": 3,
+        "photo": "placeimages/d4224cb8-9b5c-46f8-9637-adcc4e3cb3c4.jpeg",
+        "created": "2021-09-17 21:10:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 2,
+    "fields": {
+        "opuser": 2,
+        "place": 3,
+        "photo": "placeimages/8a472046-3e3e-4b6d-94da-a99a84cb2031.jpeg",
+        "created": "2021-09-17 21:10:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 3,
+    "fields": {
+        "opuser": 2,
+        "place": 3,
+        "photo": "placeimages/09c5b44a-581a-4196-8464-d94b90babe50.jpeg",
         "created": "2021-09-17 21:10:16.772405"
         }
     }

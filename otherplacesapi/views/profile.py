@@ -7,8 +7,9 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 from django.http import HttpResponseServerError
 from rest_framework import status, serializers
+from django.db.models import Q
 from django.contrib.auth.models import User
-from otherplacesapi.models import OtherPlacesUser
+from otherplacesapi.models import OtherPlacesUser, Follow
 
 
 class OtherPlacesProfileView(ViewSet):
@@ -23,6 +24,13 @@ class OtherPlacesProfileView(ViewSet):
         try:
             authuser = OtherPlacesUser.objects.get(user=request.auth.user)
             opuser = OtherPlacesUser.objects.get(pk=pk)
+            following = Follow.objects.filter(Q(opuser=opuser) & Q(follower=authuser))
+            
+            if following:
+                opuser.following = True
+            else:
+                opuser.following = False
+
             if authuser == opuser:
                 opuser.isMe = True
             else:
@@ -67,6 +75,7 @@ class OtherPlacesProfileView(ViewSet):
                 opuser.isMe = True
             else:
                 opuser.isMe = False
+
         serializer = OtherPlacesUserSerializer(
             opusers, many=True, context={'request': request})
         return Response(serializer.data)
@@ -84,6 +93,37 @@ class OtherPlacesProfileView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
+    @action(methods=['post', 'delete'], detail=True)
+    def follow(self, request, pk=None):
+        """Managing users saving a place"""
+        authuser = OtherPlacesUser.objects.get(user=request.auth.user)
+        opuser = None
+        try:
+            opuser = OtherPlacesUser.objects.get(pk=pk)
+        except OtherPlacesUser.DoesNotExist:
+            return Response(
+                {'message': 'Place does not exist.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if request.method == "POST":
+            try:
+                follow = Follow()
+                follow.follower = authuser
+                follow.opuser = opuser
+                follow.save()
+                return Response({}, status=status.HTTP_201_CREATED)
+            except Exception as ex:
+                return Response({'message': ex.args[0]})
+
+        elif request.method == "DELETE":
+            try:
+                follow = Follow.objects.filter(Q(opuser=opuser) & Q(follower=authuser))
+                follow.delete()
+                return Response(None, status=status.HTTP_204_NO_CONTENT)
+            except Exception as ex:
+                return Response({'message': ex.args[0]})
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
@@ -95,4 +135,4 @@ class OtherPlacesUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = OtherPlacesUser
-        fields = ('id', 'user', 'bio', 'profile_pic', 'isMe')
+        fields = ('id', 'user', 'bio', 'profile_pic', 'isMe', 'following')

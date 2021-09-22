@@ -17,3 +17,11 @@ class OtherPlacesUser(models.Model):
     @isMe.setter
     def isMe(self, value):
         self.__isMe = value
+
+    @property
+    def following(self):
+        return self.__following
+
+    @following.setter
+    def following(self, value):
+        self.__following = value

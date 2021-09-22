@@ -1,0 +1,22 @@
+[
+    {
+        "model": "otherplacesapi.comment",
+        "pk": 1,
+        "fields": {
+            "opuser": 1,
+            "place": 3,
+            "text": "I'll have to look for this next time I'm in Detroit.",
+            "created": "2021-09-17 21:45:16.772405"
+        }
+    },
+    {
+        "model": "otherplacesapi.comment",
+        "pk": 2,
+        "fields": {
+            "opuser": 4,
+            "place": 1,
+            "text": "Yes! The I-65 Underpass is one of my favorite places.",
+            "created": "2021-09-17 21:15:16.772405"
+        }
+    }
+]

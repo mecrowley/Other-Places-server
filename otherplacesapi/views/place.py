@@ -210,9 +210,36 @@ class PlaceView(ViewSet):
         else:
             places = None
 
-        serializer = PlaceSerializer(
-            places, many=True, context={'request': request})
-        return Response(serializer.data)
+        if places == None:
+            return Response([])
+        else:
+            for place in places:
+                photos = PlacePhoto.objects.filter(place=place)
+                photo_list = PlacePhotoSerializer(
+                    photos, many=True, context={'request': request})
+                place.photos = photo_list.data
+
+            for place in places:
+                place.saved = opuser in place.savers.all()
+
+            for place in places:
+                place.visited = opuser in place.visitors.all()
+
+            for place in places:
+                if opuser == place.opuser:
+                    place.isMine = True
+                else:
+                    place.isMine = False
+
+            for place in places:
+                place.totalvisitors = len(VisitedPlace.objects.filter(place=place))
+            
+            for place in places:
+                place.totalsaved = len(SavedPlace.objects.filter(place=place))
+
+            serializer = PlaceSerializer(
+                places, many=True, context={'request': request})
+            return Response(serializer.data)
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -231,7 +258,7 @@ class PlaceSerializer(serializers.ModelSerializer):
     opuser = OtherPlacesUserSerializer(many=False)
     class Meta:
         model = Place
-        fields = ('id', 'opuser', 'title', 'description', 'address', 'photos', 'created', 'visited', 'totalvisitors', 'saved', 'totalsaved', 'isMine')
+        fields = ('id', 'opuser', 'title', 'description', 'address', 'city', 'state', 'postal_code', 'country', 'photos', 'created', 'visited', 'totalvisitors', 'saved', 'totalsaved', 'isMine')
 
 class PlacePhotoSerializer(serializers.ModelSerializer):
     class Meta:
