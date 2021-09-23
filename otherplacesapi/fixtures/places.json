@@ -43,5 +43,20 @@
         "country":"USA",
         "created": "2021-09-17 21:27:16.772405"
         }
+    },    
+    {
+    "model": "otherplacesapi.place",
+    "pk": 4,
+    "fields": {
+        "opuser": 3,
+        "title": "Hidden Pond",
+        "description": "The Shelby Bottoms greenway has lots of little off-shoot trails, but my favorite by far takes you through a tunnel of trees out to a large field at the edge of which is Hidden Pond.",
+        "address": "",
+        "city": "Nashville",
+        "state": "Tennessee",
+        "postal_code": 37206,
+        "country":"USA",
+        "created": "2021-09-20 21:27:16.772405"
+        }
     }    
 ]

@@ -1,5 +1,7 @@
 """View module for handling requests about games"""
-from otherplacesapi.models.visitedplace import VisitedPlace
+import uuid
+import base64
+from django.core.files.base import ContentFile
 from django.core.exceptions import ValidationError
 from rest_framework import status, serializers
 from django.http import HttpResponseServerError
@@ -26,10 +28,28 @@ class PlaceView(ViewSet):
         place.title = request.data["title"]
         place.description = request.data["description"]
         place.address = request.data["address"]
+        place.city = request.data["city"]
+        place.state = request.data["state"]
+        place.postal_code = request.data["postal_code"]
+        place.country = request.data["country"]
         place.created = datetime.datetime.now()
+        place.save()
+
+        if len(request.data["photos"]) > 0:
+            placephotos = request.data["photos"]
+            for placephoto in placephotos:
+                photo = PlacePhoto()
+                photo.opuser = OtherPlacesUser.objects.get(user=request.auth.user)
+                photo.place = Place.objects.get(pk=place.id)
+                format, imgstr = placephoto.split(';base64,')
+                ext = format.split('/')[-1]
+                photo.photo = ContentFile(base64.b64decode(imgstr), name=f'{uuid.uuid4()}.{ext}')
+                photo.created = datetime.datetime.now()
+                photo.save()
+        else:
+            pass
 
         try:
-            place.save()
             serializer = PlaceSerializer(place, context={'request': request})
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         except ValidationError as ex:
@@ -77,7 +97,31 @@ class PlaceView(ViewSet):
         place.title = request.data["title"]
         place.description = request.data["description"]
         place.address = request.data["address"]
+        place.city = request.data["city"]
+        place.state = request.data["state"]
+        place.postal_code = request.data["postal_code"]
+        place.country = request.data["country"]
         place.save()
+
+        if len(request.data["deletedPhotos"]) > 0:
+            deletedphotos = request.data["deletedPhotos"]
+            for deletedphoto in deletedphotos:
+                delete = PlacePhoto.objects.get(pk=deletedphoto["id"])
+                delete.delete()
+
+        if len(request.data["photos"]) > 0:
+            placephotos = request.data["photos"]
+            for placephoto in placephotos:
+                photo = PlacePhoto()
+                photo.opuser = OtherPlacesUser.objects.get(user=request.auth.user)
+                photo.place = Place.objects.get(pk=pk)
+                format, imgstr = placephoto.split(';base64,')
+                ext = format.split('/')[-1]
+                photo.photo = ContentFile(base64.b64decode(imgstr), name=f'{uuid.uuid4()}.{ext}')
+                photo.created = datetime.datetime.now()
+                photo.save()
+        else:
+            pass
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 

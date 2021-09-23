@@ -28,5 +28,75 @@
         "photo": "placeimages/09c5b44a-581a-4196-8464-d94b90babe50.jpeg",
         "created": "2021-09-17 21:10:16.772405"
         }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 4,
+    "fields": {
+        "opuser": 3,
+        "place": 4,
+        "photo": "placeimages/2fa6a0f1-3b69-4409-852b-9aede3261e27.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 5,
+    "fields": {
+        "opuser": 3,
+        "place": 4,
+        "photo": "placeimages/1a08d87b-0258-49f4-b4cc-de2572196ee1.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 6,
+    "fields": {
+        "opuser": 3,
+        "place": 4,
+        "photo": "placeimages/d5351eff-1f79-47b3-990e-2f9f4f6b9243.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 7,
+    "fields": {
+        "opuser": 1,
+        "place": 1,
+        "photo": "placeimages/c32a317b-65ad-4c41-9bf7-fa3e7913f8e6.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 8,
+    "fields": {
+        "opuser": 1,
+        "place": 2,
+        "photo": "placeimages/fd26ef3b-93f5-4c7d-a803-92bc64f782ed.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 9,
+    "fields": {
+        "opuser": 1,
+        "place": 2,
+        "photo": "placeimages/2b659d27-7bfa-492a-9274-f2428a9c118a.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
+    },
+    {
+    "model": "otherplacesapi.placephoto",
+    "pk": 10,
+    "fields": {
+        "opuser": 1,
+        "place": 2,
+        "photo": "placeimages/19fea74c-f854-444a-b939-f6907d0f13c0.jpeg",
+        "created": "2021-09-20 21:27:16.772405"
+        }
     }
 ]
